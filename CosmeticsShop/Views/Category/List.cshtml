@@ -1,0 +1,32 @@
+﻿@model CosmeticsShop.ViewModels.CategoryListViewModel
+@{
+    ViewBag.Title = "Product Categories";
+
+}
+
+<h1 class="text-center mb-3">@ViewBag.Title</h1>
+
+<div class="cat-page">
+    <div class="cat-all">
+        <img src="~/images/@Model.ImageCategory" class=""/>
+        <div class="cat-btn">
+            <a asp-controller="Product" asp-action="Index" asp-route-id="All"
+               class="btn bg-white text-black border-1 border-dark">All Products</a>
+        </div>
+     
+    </div>
+    <div class="cat-section">
+        @foreach (Category c in @Model.Categories)
+        {
+            <div class="cat-name">
+                <img src="~/images/@c.ImageUrl" class=""/>
+                <div class="cat-btn">
+                    <a asp-controller="Product" asp-action="Index" asp-route-id="@c.Name"
+                       class="btn bg-white text-black border-1 border-dark">@c.Name</a>
+                </div>
+         </div>
+        }
+
+    </div>
+   
+</div>

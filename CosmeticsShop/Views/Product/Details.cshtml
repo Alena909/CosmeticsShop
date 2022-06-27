@@ -1,0 +1,39 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Product Details";
+}
+<div class="product-page">
+
+
+<h1 class="text-center">@ViewBag.Title</h1>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+        <img src="~/images/@Model.ImageUrl" 
+             alt="@Model.Name" 
+             />
+    </div>
+
+    <div class="col-sm-8">
+        <h2>@Model.Name</h2>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td>List Price:</td>
+                <td>@Model.Price.ToString("C")</td>
+            </tr>
+            <tr>
+                <td>Discount Percent:</td>
+                <td>@Model.DiscountPercent.ToString("P0")</td>
+            </tr>
+            <tr>
+                <td>Your Price:</td>
+                <td>@Model.DiscountPrice.ToString("C") 
+                    (You save @Model.DiscountAmount.ToString("C"))</td>
+            </tr>
+        </table>
+        <a asp-controller="Cart" asp-action="Add"
+           asp-route-id="@Model.ProductId" asp-route-slug="@Model.Slug" class="btn btn-lg d-flex justify-content-center">Add to Cart</a>
+        
+    </div>
+</div>
+</div>

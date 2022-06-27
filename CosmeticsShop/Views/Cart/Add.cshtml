@@ -1,0 +1,8 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Your cart";
+}
+<h1>@ViewBag.TItle</h1>
+<p>You added @Model.Name to your cart.</p>
+<p><a asp-controller="Cart" asp-action="Index">View Cart</a></p>
+<p><a asp-controller="Product" asp-action="Index">Continue Shopping</a></p>

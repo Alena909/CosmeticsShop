@@ -1,0 +1,13 @@
+﻿@model Product
+@{
+    ViewBag.Title = "Removed Product";
+}
+<h1>@ViewBag.Title</h1>
+<p>Are you sure you want to delete <span class="fw-bold">@Model.Name</span> from cart?</p>
+<div >
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="ProductId" />
+        <button type="submit" class="btn">Delete</button>
+        <a asp-controller="Cart" asp-action="Index" class="btn">Cancel</a>
+    </form>
+</div>

@@ -1,0 +1,47 @@
+﻿@model List<Product>
+@{
+    ViewBag.Title = "Cart Details";
+}
+<div class="page">
+
+    <h1 class="bg-white text-center pb-3">@ViewBag.Title</h1>
+    <div class="page-content d-flex justify-content-center align-items-center flex-column">
+        <table class="table table-bordered table-striped page-table">
+            <thead>
+            <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Discounted Price</th>
+            <th></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.DiscountPrice.ToString("C")</td>
+                    <td>
+                        <a asp-controller="Product" asp-action="Details"
+                           asp-route-id="@product.ProductId"
+                           asp-route-slug="@product.Slug">View Details</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Cart" asp-action="Delete"
+                           asp-route-id="@product.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        
+            </tbody>
+
+        </table>
+  
+        <div class="page-info bg-white">
+            <label>Your total is</label> <span >@ViewBag.Total.ToString("C")</span>
+            <p><a asp-controller="Product" asp-action="Index">Continue Shopping</a></p>
+        </div>
+    </div>
+</div>
