@@ -12,7 +12,11 @@ namespace CosmeticsShop
     { public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-          
+            builder.WebHost.ConfigureKestrel(serverOptions =>
+            {
+                serverOptions.Configure(builder.Configuration);
+            });
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var connString = Environment.GetEnvironmentVariable("ProductContext__ConnectionString");
@@ -49,7 +53,15 @@ namespace CosmeticsShop
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.Run();
+            if (app.Environment.IsDevelopment())
+            {
+                app.Run();
+            }
+            else
+            {
+                // force production to use port 5000
+                app.Run("http://127.0.0.1:5000");
+            }
         }
     }
 }
